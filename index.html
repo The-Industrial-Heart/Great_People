@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Great People is a private, trusted network for Chattanooga trade provider recommendations."
+    />
+    <title>Great People | Trusted Chattanooga Trade Providers</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Great People home">
+          <span class="brand-mark">GP</span>
+          <span>Great People</span>
+        </a>
+        <div class="topbar-actions">
+          <button class="ghost-button" type="button" data-open-panel="access-panel">Manage Access</button>
+          <button class="primary-button" type="button" data-open-panel="add-panel">Add Provider</button>
+        </div>
+      </nav>
+
+      <section class="hero-content" id="top">
+        <p class="eyebrow">Private recommendations from people you trust</p>
+        <h1>Find Chattanooga trade providers vetted by your personal circle.</h1>
+        <p class="hero-copy">
+          Search by capability, see exactly who endorses each provider, review completed projects,
+          and understand what trusted contacts actually paid before you make the call.
+        </p>
+        <form class="search-card" id="search-form" role="search">
+          <label for="search-input">Search providers by trade, skill, project, or contact</label>
+          <div class="search-row">
+            <input
+              id="search-input"
+              name="query"
+              type="search"
+              placeholder="Try: deck repair, emergency plumbing, bathroom remodel..."
+              autocomplete="off"
+            />
+            <button class="primary-button" type="submit">Search</button>
+          </div>
+        </form>
+      </section>
+    </header>
+
+    <main>
+      <section class="trust-strip" aria-label="App value highlights">
+        <article>
+          <strong id="provider-count">0</strong>
+          <span>trusted providers</span>
+        </article>
+        <article>
+          <strong id="endorsement-count">0</strong>
+          <span>known endorsements</span>
+        </article>
+        <article>
+          <strong>Owner approved</strong>
+          <span>invite-only contributor access</span>
+        </article>
+      </section>
+
+      <section class="layout-section">
+        <aside class="filters" aria-label="Provider filters">
+          <div class="panel-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2>Filter by what they can do</h2>
+          </div>
+          <div class="filter-list" id="capability-filters"></div>
+        </aside>
+
+        <section class="results" aria-live="polite">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Directory</p>
+              <h2 id="results-title">Recommended providers</h2>
+            </div>
+            <button class="ghost-button" type="button" id="clear-filters">Clear filters</button>
+          </div>
+          <div class="provider-grid" id="provider-grid"></div>
+          <div class="empty-state" id="empty-state" hidden>
+            <h3>No trusted providers match that search yet.</h3>
+            <p>Add a provider or invite a trusted contributor to share a recommendation.</p>
+            <button class="primary-button" type="button" data-open-panel="add-panel">Add Provider</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="workflow-section">
+        <div class="panel-heading centered">
+          <p class="eyebrow">How trust is protected</p>
+          <h2>Only your authorized circle can contribute.</h2>
+        </div>
+        <div class="workflow-grid">
+          <article>
+            <span>1</span>
+            <h3>You create an invite</h3>
+            <p>Share a private invitation with someone you personally trust.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>They request access</h3>
+            <p>New contributors remain pending until you explicitly approve them.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Endorsements stay accountable</h3>
+            <p>Each provider shows the known person, completed project, and cost range.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="side-panel" id="add-panel" aria-hidden="true" aria-labelledby="add-panel-title">
+      <div class="panel-backdrop" data-close-panel></div>
+      <div class="panel-card" role="dialog" aria-modal="true">
+        <button class="icon-button" type="button" aria-label="Close add provider panel" data-close-panel>×</button>
+        <p class="eyebrow">Contributor entry</p>
+        <h2 id="add-panel-title">Add a provider endorsement</h2>
+        <p class="muted">Submissions from non-owner contributors are marked pending for owner approval.</p>
+        <form id="provider-form" class="stacked-form">
+          <label>
+            Provider name
+            <input name="name" required placeholder="Company or person name" />
+          </label>
+          <label>
+            Trade category
+            <input name="trade" required placeholder="Plumbing, electrical, HVAC..." />
+          </label>
+          <label>
+            Capabilities
+            <input name="capabilities" required placeholder="Comma separated: water heater, leaks, remodel rough-in" />
+          </label>
+          <label>
+            Phone or contact
+            <input name="contact" required placeholder="(423) 555-0199 or preferred contact" />
+          </label>
+          <label>
+            Website or notes
+            <input name="website" placeholder="Website, license note, or availability detail" />
+          </label>
+          <hr />
+          <label>
+            Endorsed by
+            <input name="endorser" required placeholder="Trusted person's name" />
+          </label>
+          <label>
+            Project completed
+            <input name="project" required placeholder="Replaced sewer line, built deck stairs..." />
+          </label>
+          <label>
+            Project cost
+            <input name="cost" required placeholder="$850, $2,500-$3,000, donated labor..." />
+          </label>
+          <label>
+            Notes on outcome
+            <textarea name="notes" rows="4" placeholder="What went well? What should others know?"></textarea>
+          </label>
+          <button class="primary-button" type="submit">Submit provider</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="side-panel" id="access-panel" aria-hidden="true" aria-labelledby="access-panel-title">
+      <div class="panel-backdrop" data-close-panel></div>
+      <div class="panel-card" role="dialog" aria-modal="true">
+        <button class="icon-button" type="button" aria-label="Close access panel" data-close-panel>×</button>
+        <p class="eyebrow">Owner controls</p>
+        <h2 id="access-panel-title">Authorize your trusted contributors</h2>
+        <div class="owner-card">
+          <label>
+            Owner access code
+            <input id="owner-code" type="password" placeholder="Demo code: chatt-owner" />
+          </label>
+          <button class="primary-button" type="button" id="unlock-owner">Unlock owner tools</button>
+          <p class="muted" id="owner-status">Owner tools are locked on this device.</p>
+        </div>
+
+        <div class="access-tools" id="owner-tools" hidden>
+          <button class="ghost-button full-width" type="button" id="copy-invite">Copy invite link</button>
+          <div class="split-list">
+            <section>
+              <h3>Approved contributors</h3>
+              <ul id="approved-list"></ul>
+            </section>
+            <section>
+              <h3>Pending requests</h3>
+              <ul id="pending-list"></ul>
+            </section>
+          </div>
+          <form id="request-access-form" class="stacked-form compact">
+            <label>
+              Simulate access request
+              <input name="requester" required placeholder="Name of trusted person" />
+            </label>
+            <button class="secondary-button" type="submit">Request contributor access</button>
+          </form>
+          <section>
+            <h3>Pending provider submissions</h3>
+            <ul id="submission-list"></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <template id="provider-card-template">
+      <article class="provider-card">
+        <div class="card-topline">
+          <span class="trade-pill"></span>
+          <span class="status-pill"></span>
+        </div>
+        <h3></h3>
+        <p class="capability-line"></p>
+        <p class="contact-line"></p>
+        <div class="endorsement-box"></div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
